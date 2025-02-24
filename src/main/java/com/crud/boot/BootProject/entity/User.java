@@ -1,6 +1,7 @@
 package com.crud.boot.BootProject.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -11,14 +12,19 @@ public class User {
     @Column(name = "id")
     private int id;
 
+    @Size(min = 1, message = "Имя не должно быть пустым")
+    @Pattern(regexp = "^(|[A-Za-zА-Яа-яЁё]+)$", message = "Имя должно содержать только буквы")
     @Column(name = "firstname")
     private String firstName;
 
+    @Size(min = 1, message = "Фамилия не должна быть пустой")
+    @Pattern(regexp = "^(|[A-Za-zА-Яа-яЁё]+)$", message = "Фамилия должна содержать только буквы")
     @Column(name = "lastname")
     private String lastName;
 
+    @Min(value = 13, message = "Сервис доступен только пользователям от 13 лет")
     @Column(name = "age")
-    private int age;
+    private int age;;
 
     public User() {
 
